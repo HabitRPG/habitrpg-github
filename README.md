@@ -1,4 +1,6 @@
-#[HabitRPG-GitHub](https://ruddfawcett.com/habitrpg-github)
+#HabitRPG-GitHub
+
+[![Code Climate](https://codeclimate.com/github/HabitRPG/HabitRPG-GitHub/badges/gpa.svg)](https://codeclimate.com/github/HabitRPG/HabitRPG-GitHub)
 
 Connect and sync your HabitRPG and GitHub accounts.  Built on Rudd fawcett's
 [HabitRPG_PHP API class](https://github.com/ruddfawcett/HabitRPG_PHP) as well as

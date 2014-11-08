@@ -55,7 +55,8 @@ function newCommit ($repoName, $user, $count, $token) {
       print_r($HabitRPG);
 
       // create task
-      $text = 'HabitRPG-GitHub push to '.$repoName.' '.rand();
+      //$text = 'HabitRPG-GitHub push to '.$repoName.' '.rand();
+      $text = 'GitHub push '.rand();
       $type = 'todo';
       //$note = 'HabitRPG-GitHub.  Sync your GitHub commits to gain XP!';
       $task = array('type'=>$type,

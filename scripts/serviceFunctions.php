@@ -9,17 +9,10 @@
  */
 function newCommit ($repoName, $user, $count, $token) {
   global $db;
-  echo "In newCommit function for $user and repo $repoName to record the $count commits.\n";
   require_once("connect.php");
-  echo "after require\n";
   $query = "SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:forUser AND repoName=:repoName";
-  echo $query."\n";
-  print_r($db);
   $stmt = $db->prepare($query);
-  //$stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."users WHERE username=:username AND token=:token");
-  echo "stmt prepped\n";
   $stmt->execute(array(':forUser' => $user, ':repoName' => $repoName));
-  echo "stmt executed bitch\n";
   $row_count = $stmt->rowCount();
   echo "Found $row_count rows for $user and repo $repoName to record the $count commits\n";
   if ($row_count == 1) {
@@ -73,6 +66,7 @@ function newCommit ($repoName, $user, $count, $token) {
       while ($i++ < $habitsForThis) {
         $HabitRPG->taskScoring($params);
       }
+      echo "HabitRPG updated";
     }
   } elseif ($row_count == 0) {
     //create a new row

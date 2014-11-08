@@ -1,7 +1,7 @@
 <?php
 	require('connect.php');
 	require('serviceFunctions.php');
-	require_once('HabitRPG_PHP.php');
+	require_once('../classes/HabitRPG.php');
 
 	if (array_key_exists('username',$_GET) && array_key_exists('token',$_GET)) {
 		$stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."users WHERE username=:username AND token=:token");

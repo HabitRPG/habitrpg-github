@@ -10,30 +10,30 @@ class HabitRPG {
 	public $userId;
 	public $apiToken;
 	public $apiURL;
-	
+
 	/**
 	 * Creates a new HabitRPG instance
 	 */
-	 
+
 	public function __construct ($userId, $apiToken) {
 
 		$this->userId = $userId;
 		$this->apiToken = $apiToken;
-		$this->apiURL = "https://habitrpg.com/api/v1/user";
-		
-		if(!extension_loaded("cURL")) {
-			throw new Exception("This HabitRPG PHP API class requires cURL in order to work.");
+		$this->apiURL = 'https://habitrpg.com/api/v2/user';
+
+		if(!extension_loaded('cURL')) {
+			throw new Exception('This HabitRPG PHP API class requires cURL in order to work.');
 		}
 	}
-	
+
 	/**
 	 * Creates a new task for the userId and apiToken HabitRPG is initiated with
 	 * @param array $newTaskParams required keys: type, title and text
 	 * @param array $newTaskParams optional keys: value and note
 	 */
-	
 	public function newTask($newTaskParams) {
 		if(is_array($newTaskParams)) {
+			print_r($newTaskParams);
 			if(!empty($newTaskParams['type']) && !empty($newTaskParams['title']) && !empty($newTaskParams['text'])) {
 				$newTaskParamsEndpoint=$this->apiURL."/task";
 				$newTaskPostBody=array();
@@ -44,26 +44,26 @@ class HabitRPG {
 				if(!empty($newTaskParams['note'])) {
 					$newTaskPostBody['note']=$newTaskParams['note'];
 				}
-				
+
 				$newTaskPostBody=json_encode($newTaskPostBody);
-				
+
 				return $this->curl($newTaskParamsEndpoint,"POST",$newTaskPostBody);
 			}
 			else {
-				throw new Exception("Required keys of $newTaskParams are null.");
+				throw new Exception("Required keys of newTaskParams are null.");
 			}
 		}
 		else {
 			throw new Exception("newTask takes an array as it's parameter.");
 		}
 	}
-	
+
 	/**
 	 * Up votes or down votes a task by taskId using apiToken and userId
 	 * @param array $scoringParams required keys: taskId and direction
 	 * @param array $scoringParams optional keys: title, service and icon
 	 */
-	
+
 	public function taskScoring($scoringParams) {
 		if(is_array($scoringParams)) {
 			if(!empty($scoringParams['taskId']) && !empty($scoringParams['direction'])) {
@@ -79,9 +79,9 @@ class HabitRPG {
 				if(!empty($scoringParams['icon'])) {
 					$scoringPostBody['icon']=$scoringParams['icon'];
 				}
-				
+
 				$scoringPostBody=json_encode($scoringPostBody);
-				
+
 				return $this->curl($scoringEndpoint,"POST",$scoringPostBody);
 			}
 			else {
@@ -91,61 +91,61 @@ class HabitRPG {
 		else {
 			throw new Exception("taskScoring takes an array as it's parameter.");
 		}
-	}	
-	
+	}
+
 	/**
 	 * Grabs all a user's info using the apiToken and userId
 	 * @function userStats() no parameter's required, uses userId and apiToken
 	 */
-	
+
 	public function userStats() {
 		return $this->curl($this->apiURL,"GET",NULL);
 	}
-	
+
 	/**
 	 * Gets a JSON feed of all of a users task using apiToken and userId
 	 * @param string $userTasksType ex. habit,todo,daily (optional null value)
 	 * @param string $userTasksType allows to output only certain type of task
 	 */
-	
+
 	public function userTasks($userTasksType=NULL) {
 		$userTasksEndpoint=$this->apiURL."/tasks";
 		if($userTasksType != NULL) {
 			$userTasksEndpoint=$this->apiURL."/tasks?type=".$userTasksType;
 		}
 			return $this->curl($userTasksEndpoint,"GET",NULL);
-	}	
-	
+	}
+
 	/**
 	 * Get's info for a certain task only for the apiToken and userId passed
 	 * @param string $taskId taskId for user task, which can be grabbed from userTasks()
 	 */
-	
+
 	public function userGetTask($taskId) {
 		if(!empty($taskId)) {
 			$userGetTaskEndpoint=$this->apiURL."/task/".$taskId;
-			
+
 			return $this->curl($userGetTaskEndpoint,"GET");
 		}
 		else {
 			throw new Exception("userGetTask needs a value as it's parameter.");
 		}
 	}
-	
+
 	/**
 	 * Updates a task's for a userId and apiToken combo and a taskId
 	 * @param array $updateParams required keys: taskId and text
 	 */
-	 	
+
 	public function updateTask($updateParams) {
 		if(is_array($updateParams)) {
 			if(!empty($updateParams['taskId']) && !empty($updateParams['text'])) {
 				$updateParamsEndpoint=$this->apiURL."/task/".$updateParams['taskId'];
 				$updateTaskPostBody=array();
 				$updateTaskPostBody['text'] = $updateParams['text'];
-				
+
 				$updateTaskPostBody=json_encode($updateTaskPostBody);
-				
+
 				return $this->curl($updateParamsEndpoint,"PUT",$updateTaskPostBody);
 			}
 			else {
@@ -156,19 +156,19 @@ class HabitRPG {
 			throw new Exception("updateTask takes an array as it's parameter.");
 		}
 	}
-	
+
 	/**
 	 * Performs all cURLs that are initated in each function, private function
 	 * @param string $endpoint is the URL of the cURL
 	 * @param string $curlType is the type of the cURL for the switch, e.g. PUT, POST, GET, etc.
 	 * @param array $postBody is the data that is posted to $endpoint in JSON
 	 */
-	
+
 	private function curl($endpoint,$curlType,$postBody) {
 		$curl = curl_init();
 		$curlArray = array(
-							CURLOPT_RETURNTRANSFER => true, 
-							CURLOPT_HEADER => false, 
+							CURLOPT_RETURNTRANSFER => true,
+							CURLOPT_HEADER => false,
 							CURLOPT_ENCODING => "gzip",
 							CURLOPT_HTTPHEADER => array(
 														"Content-type: application/json",
@@ -185,7 +185,7 @@ class HabitRPG {
 				curl_setopt_array($curl, $curlArray);
 				break;
 			case "PUT":
-				$curlArray[CURLOPT_CUSTOMREQUEST] = "PUT";				
+				$curlArray[CURLOPT_CUSTOMREQUEST] = "PUT";
 				$curlArray[CURLOPT_POSTFIELDS] = $postBody;
 				curl_setopt_array($curl, $curlArray);
 				break;
@@ -194,12 +194,12 @@ class HabitRPG {
 			default:
 				throw new Exception("Please use a valid method as the cURL type.");
 		}
-		
+
 		$habitRPGResponse = curl_exec($curl);
 		$habitRPGHTTPCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-		
+
 		curl_close($curl);
-		
+
 		if ($habitRPGHTTPCode == 200) {
 			return array("result"=>true,"habitRPGData"=>json_decode($habitRPGResponse,true));
 		}

@@ -1,6 +1,7 @@
 # Personalization #
 ###################
 scripts/connect.php
+tests/account.php
 
 # Composer #
 ############

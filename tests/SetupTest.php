@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests;
+namespace tests;
 
 /**
  * This class tests setup.
@@ -14,7 +14,7 @@ namespace Tests;
    WARNING: Don't run this if you already have things set up. It will destroy them.
  *
  * To run:
- * phpunit Tests/SetupTest
+ * phpunit tests/SetupTest
  *
  * @author Bradley Wogsland <bradley@wogsland.org>
  */

@@ -23,16 +23,16 @@ extends HabitRPGAPI
 
 	/**
 	 * Creates a new task for the userId and apiToken HabitRPG is initiated with
-	 * @param array $newTaskParams required keys: type, title and text
+	 * @param array $newTaskParams required keys: type and text
 	 * @param array $newTaskParams optional keys: value and note
 	 */
 	public function newTask($newTaskParams) {
 		if(is_array($newTaskParams)) {
-			print_r($newTaskParams);
+			//print_r($newTaskParams);
 			if(!empty($newTaskParams['type'])
 			//&& !empty($newTaskParams['title'])
 			&& !empty($newTaskParams['text'])) {
-				$newTaskParamsEndpoint=$this->apiURL."/task";
+				$newTaskParamsEndpoint=$this->apiURL."/tasks";
 				$newTaskPostBody=array();
 				$newTaskPostBody['type'] = $newTaskParams['type'];
 				$newTaskPostBody['text'] = $newTaskParams['text'];
@@ -42,7 +42,7 @@ extends HabitRPGAPI
 				if(!empty($newTaskParams['note'])) {
 					$newTaskPostBody['note']=$newTaskParams['note'];
 				}
-
+				//print_r($newTaskPostBody);
 				$newTaskPostBody=json_encode($newTaskPostBody);
 
 				return $this->curl($newTaskParamsEndpoint,"POST",$newTaskPostBody);

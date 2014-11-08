@@ -34,51 +34,29 @@ extends \PHPUnit_Framework_TestCase
   /**
    * Tests the newTask function.
    *
-   * A task, for example,
-   [83] => Array
-                        (
-                            [text] => :blue_book: Read a 1000 page book
-                            [challenge] => Array
-                                (
-                                    [id] => 39ff426f-9328-4476-86cc-2525a1cf848e
-                                )
-
-                            [attribute] => int
-                            [priority] => 2
-                            [value] => -201.73988025947
-                            [tags] => Array
-                                (
-                                    [39ff426f-9328-4476-86cc-2525a1cf848e] => 1
-                                )
-
-                            [notes] =>
-                            [dateCreated] => 2014-08-26T13:55:09.371Z
-                            [id] => 7b044529-869e-4247-9c58-23da84c2e217
-                            [checklist] => Array
-                                (
-                                )
-
-                            [collapseChecklist] =>
-                            [completed] =>
-                            [type] => todo
-                        )
    */
   public function test_newTask () {
     $test = new \HabitRPGUser(UserID, APIToken);
 
     // setup the parameters
     $type = 'todo';
-    $title = 'API Task Creation '.rand();
-    $text = 'Create a task using the API';
+    $text = 'API Task Creation '.rand();
+    //$attribute = 'str';
+    //$priority = '1';
     $task = array('type'=>$type,
                   //'title'=>$title,
+                  //'attribute'=>$attribute,
+                  //'priority'=>$priority,
                   'text'=>$text
                   );
 
     // create it
-    $test->newTask($task);
+    $result = $test->newTask($task);
+    //print_r($result);
 
-    $this->markTestIncomplete('incomplete');
+    $this->assertEquals(1, $result['result']);
+    $this->assertEquals($type, $result['habitRPGData']['type']);
+    $this->assertEquals($text, $result['habitRPGData']['text']);
   }
 
   /**

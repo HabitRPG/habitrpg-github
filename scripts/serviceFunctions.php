@@ -8,6 +8,7 @@
  * @param string $token - the user's unique token
  */
 function newCommit ($repoName, $user, $count, $token) {
+  global $db;
   echo "In newCommit function for $user and repo $repoName to record the $count commits.\n";
   require_once("connect.php");
   echo "after require\n";

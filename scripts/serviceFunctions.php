@@ -53,10 +53,10 @@ function newCommit ($repoName, $user, $count, $token) {
     if ($affected_rows > 0) {
       // see if HabitRPG is up
       $test = new HabitRPGStatus($userId,$apiToken);
-      echo "HabitRPG is ".($test->up()?'up':'not up');
+      echo "HabitRPG is ".($test->up()?'up':'not up')."\n";
 
       $huser = new HabitRPGUser($userId,$apiToken);
-      print_r($huser);
+      //print_r($huser);
 
       // create task
       $text = 'GitHub push to '.$repoName.' '.rand();

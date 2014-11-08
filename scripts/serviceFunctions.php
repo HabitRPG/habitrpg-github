@@ -63,8 +63,9 @@ function newCommit ($repoName, $user, $count, $token) {
       $params['note'] = "HabitRPG-GitHub.  Sync your GitHub commits to gain XP.  What's not to love?!";
       $params['type'] = 'todo';
       $i = 0;
-      while ($i++ < $habitsForThis) {
+      while ($i < $habitsForThis) {
         $HabitRPG->taskScoring($params);
+        $i++;
       }
       echo "HabitRPG updated";
     }

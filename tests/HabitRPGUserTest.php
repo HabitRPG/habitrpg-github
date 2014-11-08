@@ -40,7 +40,7 @@ extends \PHPUnit_Framework_TestCase
 
     // setup the parameters
     $type = 'todo';
-    $text = 'API Task Creation '.rand();
+    $text = 'API Task Creation Test '.rand();
     //$attribute = 'str';
     //$priority = '1';
     $task = array('type'=>$type,
@@ -57,6 +57,11 @@ extends \PHPUnit_Framework_TestCase
     $this->assertEquals(1, $result['result']);
     $this->assertEquals($type, $result['habitRPGData']['type']);
     $this->assertEquals($text, $result['habitRPGData']['text']);
+
+    // clean up
+    $scoringParams = array('taskId'=>$result['habitRPGData']['_id'], 'direction'=>'up');
+    $score = $test->taskScoring($scoringParams);
+    $this->assertEquals(1, $score['result']);
   }
 
   /**
@@ -66,8 +71,8 @@ extends \PHPUnit_Framework_TestCase
     $test = new \HabitRPGUser(UserID, APIToken);
 
     // create task
-    $type = 'habit';
-    $text = 'API Task Scoring '.rand();
+    $type = 'todo';
+    $text = 'API Task Scoring Test '.rand();
     $task = array('type'=>$type,
                   'text'=>$text
                   );
@@ -114,7 +119,27 @@ extends \PHPUnit_Framework_TestCase
   public function test_userGetTask () {
     $test = new \HabitRPGUser(UserID, APIToken);
 
-    $this->markTestIncomplete('incomplete');
+    // create task
+    $type = 'todo';
+    $text = 'API Task Getting Test '.rand();
+    $task = array('type'=>$type,
+                  'text'=>$text
+                  );
+    $result = $test->newTask($task);
+    $taskId = $result['habitRPGData']['_id'];
+
+    // get it
+    $get = $test->userGetTask($taskId);
+    //print_r($get);
+
+    $this->assertEquals(1, $get['result']);
+    $this->assertEquals($type, $get['habitRPGData']['type']);
+    $this->assertEquals($text, $get['habitRPGData']['text']);
+
+    // clean up
+    $scoringParams = array('taskId'=>$taskId, 'direction'=>'up');
+    $score = $test->taskScoring($scoringParams);
+    $this->assertEquals(1, $score['result']);
   }
 
   /**

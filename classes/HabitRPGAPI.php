@@ -33,9 +33,9 @@ class HabitRPGAPI {
 	 * Performs all cURLs that are initated in each function, private function
 	 * @param string $endpoint is the URL of the cURL
 	 * @param string $curlType is the type of the cURL for the switch, e.g. PUT, POST, GET, etc.
-	 * @param array $postBody is the data that is posted to $endpoint in JSON
+	 * @param array $postBody (optional) is the data that is posted to $endpoint in JSON
 	 */
-	protected function curl($endpoint,$curlType,$postBody) {
+	protected function curl($endpoint,$curlType,$postBody = NULL) {
 		$curl = curl_init();
 		$curlArray = array(
 							CURLOPT_RETURNTRANSFER => true,

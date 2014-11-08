@@ -100,7 +100,7 @@ extends HabitRPGAPI
 	 */
 	public function userGetTask($taskId) {
 		if(!empty($taskId)) {
-			$userGetTaskEndpoint=$this->apiURL."/task/".$taskId;
+			$userGetTaskEndpoint=$this->apiURL."/tasks/".$taskId;
 
 			return $this->curl($userGetTaskEndpoint,"GET");
 		}

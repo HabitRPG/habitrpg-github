@@ -1,14 +1,14 @@
 <?php
-/*
-* This file is part of HabitRPG-GitHub.
-*
-* For the full copyright and license information, please view the LICENSE
-* file that was distributed with this source code.
-*
-* This class represents a HabitRPG user.
-*
-* @author Rudd Fawcett <rudd.fawcett@gmail.com> (from http://github.com/ruddfawcett/HabitRPG_PHP)
-*/
+/**
+ * This file is part of HabitRPG-GitHub.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * This class represents a HabitRPG user.
+ *
+ * @author Rudd Fawcett <rudd.fawcett@gmail.com> (from http://github.com/ruddfawcett/HabitRPG_PHP)
+ */
 
 class HabitRPGAPI {
 	public $userId;
@@ -16,9 +16,8 @@ class HabitRPGAPI {
 	public $apiURL;
 
 	/**
-	 * Creates a new HabitRPG instance
+	 * Creates a new HabitRPGAPI instance
 	 */
-
 	public function __construct ($userId, $apiToken) {
 
 		$this->userId = $userId;
@@ -30,6 +29,12 @@ class HabitRPGAPI {
 		}
 	}
 
+	/**
+	 * Performs all cURLs that are initated in each function, private function
+	 * @param string $endpoint is the URL of the cURL
+	 * @param string $curlType is the type of the cURL for the switch, e.g. PUT, POST, GET, etc.
+	 * @param array $postBody is the data that is posted to $endpoint in JSON
+	 */
 	protected function curl($endpoint,$curlType,$postBody) {
 		$curl = curl_init();
 		$curlArray = array(

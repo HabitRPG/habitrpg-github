@@ -56,12 +56,13 @@ function newCommit ($repoName, $user, $count, $token) {
       // create task
       $text = 'HabitRPG-GitHub: '.$repoName.' '.rand();
       $type = 'todo';
-      $note = 'HabitRPG-GitHub.  Sync your GitHub commits to gain XP!';
+      //$note = 'HabitRPG-GitHub.  Sync your GitHub commits to gain XP!';
       $task = array('type'=>$type,
-                    'text'=>$text,
-                    'note'=>$note
+                    'text'=>$text//,
+                    //'note'=>$note
                     );
       $result = $HabitRPG->newTask($task);
+      print_r($result);
       $taskId = $result['habitRPGData']['_id'];
 
       // score it
@@ -75,7 +76,7 @@ function newCommit ($repoName, $user, $count, $token) {
       $i = 0;
       while ($i < $habitsForThis) {
         $score = $HabitRPG->taskScoring($scoringParams);
-        //print_r($score);
+        print_r($score);
         $i++;
       }
       echo "HabitRPG updated";

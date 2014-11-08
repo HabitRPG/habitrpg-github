@@ -53,8 +53,7 @@ function newCommit ($repoName, $user, $count, $token) {
       $params = array();
       if ($direction == 1) {
         $params['direction'] = "up";
-      }
-      else {
+      } else {
         $params['direction'] = "down";
       }
       $params['taskId'] = "habitrpg-github-" . rand();

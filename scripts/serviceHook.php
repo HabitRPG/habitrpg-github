@@ -29,7 +29,7 @@
 				}
 			}
 
-			echo "There where $i commits.";
+			echo "There were $i commits in this push.\n";
 			if ($i > 0) {
 				newCommit($repoName,$username,$i,$token);
 			}

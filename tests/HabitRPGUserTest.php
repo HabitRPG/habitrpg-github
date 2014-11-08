@@ -9,14 +9,14 @@
 namespace tests;
 
 /**
- * This class tests the HabitRPG class.
+ * This class tests the HabitRPGUser class.
  *
  * To run:
- * phpunit --bootstrap tests/bootstrap.php tests/HabitRPGTest
+ * phpunit --bootstrap tests/bootstrap.php tests/HabitRPGUserTest
  *
  * @author Bradley Wogsland <bradley@wogsland.org>
  */
-class HabitRPGTest
+class HabitRPGUserTest
 extends \PHPUnit_Framework_TestCase
 {
   /**
@@ -25,7 +25,7 @@ extends \PHPUnit_Framework_TestCase
   public function test_constructor () {
     $test_name = 'user'.rand();
     $test_token = 'api'.rand();
-    $test = new \HabitRPG($test_name, $test_token);
+    $test = new \HabitRPGUser($test_name, $test_token);
     $this->assertEquals($test_name, $test->userId);
     $this->assertEquals($test_token, $test->apiToken);
     $this->assertEquals('https://habitrpg.com/api/v2/user', $test->apiURL);
@@ -61,10 +61,10 @@ extends \PHPUnit_Framework_TestCase
                             [collapseChecklist] =>
                             [completed] =>
                             [type] => todo
-                        )   
+                        )
    */
   public function test_newTask () {
-    $test = new \HabitRPG(UserID, APIToken);
+    $test = new \HabitRPGUser(UserID, APIToken);
 
     // setup the parameters
     $type = 'todo';
@@ -85,7 +85,7 @@ extends \PHPUnit_Framework_TestCase
    * Tests the taskScoring function.
    */
   public function test_taskScoring () {
-    $test = new \HabitRPG(UserID, APIToken);
+    $test = new \HabitRPGUser(UserID, APIToken);
 
     $this->markTestIncomplete('incomplete');
   }
@@ -94,7 +94,7 @@ extends \PHPUnit_Framework_TestCase
    * Tests the userStats function.
    */
   public function test_userStats () {
-    $test = new \HabitRPG(UserID, APIToken);
+    $test = new \HabitRPGUser(UserID, APIToken);
 
     $stats = $test->userStats();
     $this->assertEquals(UserID, $stats['habitRPGData']['_id']);
@@ -105,7 +105,7 @@ extends \PHPUnit_Framework_TestCase
    * Tests the userTasks function.
    */
   public function test_userTasks () {
-    $test = new \HabitRPG(UserID, APIToken);
+    $test = new \HabitRPGUser(UserID, APIToken);
 
     $tasks = $test->userStats();
     //$this->assertEquals(UserID, $tasks['habitRPGData']['_id']);
@@ -118,7 +118,7 @@ extends \PHPUnit_Framework_TestCase
    * Tests the userGetTask function.
    */
   public function test_userGetTask () {
-    $test = new \HabitRPG(UserID, APIToken);
+    $test = new \HabitRPGUser(UserID, APIToken);
 
     $this->markTestIncomplete('incomplete');
   }
@@ -127,7 +127,7 @@ extends \PHPUnit_Framework_TestCase
    * Tests the updateTask function.
    */
   public function test_updateTask () {
-    $test = new \HabitRPG(UserID, APIToken);
+    $test = new \HabitRPGUser(UserID, APIToken);
 
     $this->markTestIncomplete('incomplete');
   }

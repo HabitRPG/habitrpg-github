@@ -10,4 +10,6 @@
 
 //require_once(__DIR__.'/../scripts/connect.php');
 require_once(__DIR__.'/account.php');
-require_once(__DIR__.'/../classes/HabitRPG.php');
+require_once(__DIR__.'/../classes/HabitRPGAPI.php');
+require_once(__DIR__.'/../classes/HabitRPGStatus.php');
+require_once(__DIR__.'/../classes/HabitRPGUser.php');

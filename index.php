@@ -2,7 +2,7 @@
 require('scripts/setup.php');
 require('scripts/header.php');
 ?>
-	<body>
+  <body>
     <div class="container">
 
       <div class="masthead">
@@ -41,8 +41,10 @@ require('scripts/header.php');
         <div class="span4">
           <h2>Setup</h2>
           <p>Please read these instructions in order to properly connect your HabitRPG and GitHub accounts.  <strong>Remember to use your GitHub username!  Otherwise, this service will not work!</strong></p>
-          <p><a class="btn" href="http://ruddfawcett.com/habitrpg-github/about.php#setup">View details &raquo;</a></p>
-       </div>
+          <p>
+            <a class="btn" href=<?php echo "\"{$website}/about.php#setup\"";?>>View details &raquo;</a>
+          </p>
+        </div>
         <div class="span4">
           <h2>Find Me</h2>
           <p>Find me on GitHub! I'm completely open sourced, just like HabitRPG!  Fork me, watch me, send me a pull request, open an issue!  It all helps! Be sure to star HabitRPG while you're at it!  Need private help? <a href="mailto:rudd.fawcett@gmail.com">Email me.</a></p>

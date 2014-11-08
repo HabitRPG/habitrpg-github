@@ -95,7 +95,11 @@
 		<p class='lead'>You don't yet have any repositories!  To connect one with your account, see <a href="about.php#setup">this guide</a>!</p>
 	<?php endif ?>
 <h3 class="section-header" id='setup'>Custom URL Scheme:</h3>
-	<div class='well' style='margin:0;'><strong style='font-size: 17px;'>http://ruddfawcett.com/habitrpg-github/scripts/serviceHook.php?username=<?php echo $_SESSION['username'];?>&token=<?php echo $_SESSION['token']; ?></strong></div><br>
+	<div class='well' style='margin:0;'>
+		<strong style='font-size: 17px;'>
+			<?php echo $website;?>/scripts/serviceHook.php?username=<?php echo $_SESSION['username'];?>&token=<?php echo $_SESSION['token']; ?>
+		</strong>
+	</div><br>
 
 <h3 class="section-header" id='setup'>Note:</h3>
 		<p class='lead'>If you would like more features to happen, follow or star the project, or open an issue!  This is how I will know you want more from this!  Thanks!</p>

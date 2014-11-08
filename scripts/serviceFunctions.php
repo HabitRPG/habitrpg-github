@@ -52,19 +52,30 @@ function newCommit ($repoName, $user, $count, $token) {
     // make the changes in HabitRPG
     if ($affected_rows > 0) {
       $HabitRPG = new HabitRPGUser($userId,$apiToken);
-      $params = array();
+
+      // create task
+      $text = 'HabitRPG-GitHub: '.$repoName.' '.rand();
+      $type = 'todo';
+      $note = 'HabitRPG-GitHub.  Sync your GitHub commits to gain XP!';
+      $task = array('type'=>$type,
+                    'text'=>$text,
+                    'note'=>$note
+                    );
+      $result = $HabitRPG->newTask($task);
+      $taskId = $result['habitRPGData']['_id'];
+
+      // score it
       if ($direction == 1) {
-        $params['direction'] = "up";
+        $direction = "up";
       } else {
-        $params['direction'] = "down";
+        $direction = "down";
       }
-      $params['taskId'] = "habitrpg-github-" . rand();
-      $params['text'] = "HabitRPG-GitHub: " . $repoName;
-      $params['note'] = "HabitRPG-GitHub.  Sync your GitHub commits to gain XP.  What's not to love?!";
-      $params['type'] = 'todo';
+      $scoringParams = array('taskId'=>$taskId, 'direction'=>$direction);
+
       $i = 0;
       while ($i < $habitsForThis) {
-        $HabitRPG->taskScoring($params);
+        $score = $HabitRPG->taskScoring($scoringParams);
+        //print_r($score);
         $i++;
       }
       echo "HabitRPG updated";

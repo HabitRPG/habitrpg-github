@@ -34,7 +34,7 @@ extends HabitRPGAPI
 	* @return true if up, otherwise false
 	*/
 	public function up() {
-		$test = $this->current;
+		$test = $this->current();
 		return ('up' == $test['habitRPGData']['status']);
 	}
 }

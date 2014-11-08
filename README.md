@@ -27,7 +27,7 @@ should look like this after you have entered the values:
 ```php
   define("MYSQL_PREFIX","{Table prefix}");
   $hostname = "{Path to MySQL database}";
-  $username = "{MySQL database username, most default to root";
+  $username = "{MySQL database username, most default to root}";
   $password = "{MySQL database password, most default to no password}";
   $dbname = "{Name of the database you're importing the data into}";
 ```

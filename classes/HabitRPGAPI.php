@@ -22,7 +22,7 @@ class HabitRPGAPI {
 
 		$this->userId = $userId;
 		$this->apiToken = $apiToken;
-		$this->apiURL = 'https://habitrpg.com/api/v2/';
+		$this->apiURL = 'https://habitrpg.com:443/api/v2/';
 
 		if(!extension_loaded('cURL')) {
 			throw new Exception('This HabitRPG PHP API class requires cURL in order to work.');

@@ -12,6 +12,7 @@ function newCommit ($repoName, $user, $count, $token) {
   $stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:username AND repoName=:repoName");
   $stmt->execute(array(':username' => $user, ':repoName' => $repoName));
   $row_count = $stmt->rowCount();
+  echo "Found $row_count rows for $user and repo $repoName to record the $count commits\n";
   if ($row_count == 1) {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $resultsArray = $results[0];

@@ -39,3 +39,5 @@ If you're working locally don't forget to start MySQL first, though!
 2. Set up your local development environment.
 3. Copy `tests/account_example.php` to `tests/account.php` and enter your test account credentials.
 4. Make a contribution & submit a pull request!
+
+Our [Contributors](https://github.com/HabitRPG/HabitRPG-GitHub/graphs/contributors)

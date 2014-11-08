@@ -51,23 +51,18 @@ function newCommit ($repoName, $user, $count, $token) {
 
     // make the changes in HabitRPG
     if ($affected_rows > 0) {
-      $HabitRPG = new HabitRPGUser($userId,$apiToken);
-      print_r($HabitRPG);
+      $huser = new HabitRPGUser($userId,$apiToken);
+      print_r($huser);
 
       // create task
-      /*$text = 'GitHub push to '.$repoName.' '.rand();
+      $text = 'GitHub push to '.$repoName.' '.rand();
       //$text = 'GitHub push '.rand();
       $type = 'todo';
-      //$note = 'HabitRPG-GitHub.  Sync your GitHub commits to gain XP!';
-      $task = array('type'=>$type,
-                    'text'=>$text
-                  );*/
-      $type = 'todo';
-      $text = 'API Task Scoring Test '.rand();
+      $note = 'HabitRPG-GitHub.  Sync your GitHub commits to gain XP!';
       $task = array('type'=>$type,
                     'text'=>$text
                     );
-      $result = $HabitRPG->newTask($task);
+      $result = $huser->newTask($task);
       print_r($result);
       $taskId = $result['habitRPGData']['_id'];
 
@@ -81,7 +76,7 @@ function newCommit ($repoName, $user, $count, $token) {
 
       $i = 0;
       while ($i < $habitsForThis) {
-        $score = $HabitRPG->taskScoring($scoringParams);
+        $score = $huser->taskScoring($scoringParams);
         print_r($score);
         $i++;
       }

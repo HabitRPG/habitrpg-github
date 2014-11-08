@@ -1,6 +1,7 @@
 <?php require('scripts/header.php'); ?>
 <?php require('scripts/connect.php'); ?>
 	<body>
+
     <div class="container">
 
       <div class="masthead">
@@ -28,5 +29,5 @@
 				require('views/login.php');
 			}
 		?>
-
+<script src='scripts/js/submission.js' type='text/javascript'></script>
 <?php require('scripts/footer.php'); ?>

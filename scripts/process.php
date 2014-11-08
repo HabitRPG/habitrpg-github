@@ -1,5 +1,6 @@
 <?php
 	require('session.php');
+	//echo "<pre>";print_r($_POST);die;
 	switch ($_POST['type']) {
 		case "login":
 			if (empty($_POST['username']) || empty($_POST['password'])) {
@@ -27,10 +28,10 @@
 				}
 		break;
 		case "signup";
+			//echo "<pre>";print_r($_POST);die;
 			if (empty($_POST['username2']) || empty($_POST['password2']) || empty($_POST['apiToken']) || empty($_POST['userId']) || empty($_POST['realName'])) {
 				echo "<div class='alert alert-error'><strong>Error!</strong> Please enter values for all fields!</div>";
-			}
-			else {
+			} else {
 				function randString($length, $charset='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')
 				{
 					$str = '';

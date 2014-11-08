@@ -39,7 +39,7 @@
 			$affected_rows = $stmt->rowCount();
 
 			if ($affected_rows > 0) {
-				$HabitRPG = new HabitRPG($userId,$apiToken);
+				$HabitRPG = new HabitRPGUser($userId,$apiToken);
 				$params = array();
 				if ($direction == 1) {
 					$params['direction'] = "up";

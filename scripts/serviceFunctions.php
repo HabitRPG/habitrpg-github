@@ -1,6 +1,6 @@
 <?php
 /**
- * Register SPL autoloader.
+ * Function to process a new commit from the service hook.
  *
  * @param string $repoName - the name of the ropository committed to
  * @param string $user - the github username

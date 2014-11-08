@@ -52,6 +52,7 @@ function newCommit ($repoName, $user, $count, $token) {
     // make the changes in HabitRPG
     if ($affected_rows > 0) {
       $HabitRPG = new HabitRPGUser($userId,$apiToken);
+      print_r($HabitRPG);
       $params = array();
       if ($direction == 1) {
         $params['direction'] = "up";

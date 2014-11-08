@@ -2,8 +2,8 @@ RewriteEngine On
 Options +FollowSymLinks
 RewriteBase /
 
-RewriteRule ^(.*)\.html$ affiliate/$1.php
-RewriteRule ^(.*)\.do$ affiliate/$1.php
+RewriteRule ^(.*)\.html$ $1.php
+RewriteRule ^(.*)\.do$ $1.php
 
 ErrorDocument 404 /
 ErrorDocument 403 /

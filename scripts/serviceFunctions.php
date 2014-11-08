@@ -8,6 +8,7 @@
  * @param string $token - the user's unique token
  */
 function newCommit ($repoName, $user, $count, $token) {
+  echo "In newCommit function\n";
   require_once("connect.php");
   $stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:username AND repoName=:repoName");
   $stmt->execute(array(':username' => $user, ':repoName' => $repoName));

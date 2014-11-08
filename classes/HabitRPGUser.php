@@ -40,6 +40,7 @@ extends HabitRPGAPI
 					$newTaskPostBody['note']=$newTaskParams['note'];
 				}
 				$newTaskPostBody=json_encode($newTaskPostBody);
+				echo $newTaskPostBody."\n";
 				return $this->curl($newTaskParamsEndpoint,"POST",$newTaskPostBody);
 			}
 			else {

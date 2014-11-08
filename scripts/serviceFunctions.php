@@ -13,6 +13,7 @@ function newCommit ($repoName, $user, $count, $token) {
   echo "after require\n";
   $query = "SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:forUser AND repoName=:repoName";
   echo $query."\n";
+  print_r($db);
   $stmt = $db->prepare($query);
   //$stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."users WHERE username=:username AND token=:token");
   echo "stmt prepped\n";

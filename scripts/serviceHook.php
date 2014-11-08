@@ -1,5 +1,6 @@
 <?php
 	require('connect.php');
+	require('session.php');
 	require('serviceFunctions.php');
 
 	if (array_key_exists('username',$_GET) && array_key_exists('token',$_GET)) {

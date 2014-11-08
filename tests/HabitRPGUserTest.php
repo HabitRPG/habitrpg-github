@@ -148,6 +148,28 @@ extends \PHPUnit_Framework_TestCase
   public function test_updateTask () {
     $test = new \HabitRPGUser(UserID, APIToken);
 
-    $this->markTestIncomplete('incomplete');
+    // create task
+    $type = 'todo';
+    $text = 'API Task '.rand();
+    $task = array('type'=>$type,
+                  'text'=>$text
+                  );
+    $result = $test->newTask($task);
+    $taskId = $result['habitRPGData']['_id'];
+
+    // update it
+    $text2 = 'API Task Updating Test '.rand();
+    $updateParams = array('taskId'=>$taskId, 'text'=>$text2);
+    $update = $test->updateTask($updateParams);
+    //print_r($update);
+
+    $this->assertEquals(1, $update['result']);
+    $this->assertEquals($type, $update['habitRPGData']['type']);
+    $this->assertEquals($text2, $update['habitRPGData']['text']);
+
+    // clean up
+    $scoringParams = array('taskId'=>$taskId, 'direction'=>'up');
+    $score = $test->taskScoring($scoringParams);
+    $this->assertEquals(1, $score['result']);
   }
 }

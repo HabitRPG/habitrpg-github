@@ -116,7 +116,7 @@ extends HabitRPGAPI
 	public function updateTask($updateParams) {
 		if(is_array($updateParams)) {
 			if(!empty($updateParams['taskId']) && !empty($updateParams['text'])) {
-				$updateParamsEndpoint=$this->apiURL."/task/".$updateParams['taskId'];
+				$updateParamsEndpoint=$this->apiURL."/tasks/".$updateParams['taskId'];
 				$updateTaskPostBody=array();
 				$updateTaskPostBody['text'] = $updateParams['text'];
 
@@ -125,7 +125,7 @@ extends HabitRPGAPI
 				return $this->curl($updateParamsEndpoint,"PUT",$updateTaskPostBody);
 			}
 			else {
-				throw new Exception("Required keys of $updateParams are null.");
+				throw new Exception("Required keys of updateParams are null.");
 			}
 		}
 		else {

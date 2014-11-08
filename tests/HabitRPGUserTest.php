@@ -110,7 +110,7 @@ extends \PHPUnit_Framework_TestCase
     $this->assertTrue(is_array($tasks['habitRPGData']['todos']));
     $this->assertTrue(is_array($tasks['habitRPGData']['habits']));
     $this->assertTrue(is_array($tasks['habitRPGData']['dailys']));
-    //print_r($tasks);
+    //print_r($tasks['habitRPGData']['rewards']);
   }
 
   /**

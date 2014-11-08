@@ -1,6 +1,7 @@
 <div class="page-header">
 	<h1>Thanks for signing up, <?php $first = explode(" ", $_SESSION['realName']); echo $first[0]; ?>!</h1>
 </div>
+<pre><?php print_r($_SESSION);?></pre>
 <h3 class="section-header" id='setup'>So... what's happening?</h3>
 		<p class='lead'>Well, behind the scenes, every time you commit to your repository with the service hook, you gain XP!</p>
 <!--

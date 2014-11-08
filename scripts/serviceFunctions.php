@@ -14,7 +14,7 @@ function newCommit ($repoName, $user, $count, $token) {
   $stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:username AND repoName=:repoName");
   echo "stmt prepped\n";
   $stmt->execute(array(':username' => $user, ':repoName' => $repoName));
-  echo "stmt executed\n";
+  echo "stmt executed bitch\n";
   $row_count = $stmt->rowCount();
   echo "Found $row_count rows for $user and repo $repoName to record the $count commits\n";
   if ($row_count == 1) {

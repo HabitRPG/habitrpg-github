@@ -48,6 +48,7 @@ function newCommit ($repoName, $user, $count, $token) {
     $stmt = $db->prepare("UPDATE ".MYSQL_PREFIX."userInfo SET current=?,totalHabit=?,totalCommits=? WHERE id=?");
     $stmt->execute(array($newCurrent, $newTotalHabit,$newTotalCommits,$id));
     $affected_rows = $stmt->rowCount();
+    echo $affected_rows."\n";
 
     // make the changes in HabitRPG
     if ($affected_rows > 0) {

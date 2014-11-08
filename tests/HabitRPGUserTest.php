@@ -69,6 +69,7 @@ extends \PHPUnit_Framework_TestCase
    */
   public function test_taskScoring () {
     $test = new \HabitRPGUser(UserID, APIToken);
+    //print_r($test);
 
     // create task
     $type = 'todo';
@@ -77,6 +78,7 @@ extends \PHPUnit_Framework_TestCase
                   'text'=>$text
                   );
     $result = $test->newTask($task);
+    //print_r($result);
     $taskId = $result['habitRPGData']['_id'];
 
     // score it

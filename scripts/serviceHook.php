@@ -14,7 +14,7 @@
 			$token = $resultsArray['token'];
 
 			$hookArray = json_decode(file_get_contents('php://input'),true);
-			$repoName = $hookArray['repository']['name'];
+			$repoName = $hookArray['repository']['full_name'];
 
 			$commitArray = $hookArray['commits'];
 
@@ -24,17 +24,12 @@
 			$i=0;
 
 			foreach ($commitArray as $commit) {
-				if (!array_key_exists('name',$commit['committer']) && array_key_exists('username',$commit['committer'])) {
-					$i++;
-				}
-				else if (array_key_exists('name',$commit['committer']) && !array_key_exists('username',$commit['committer'])) {
-					$i++;
-				}
-				else if (array_key_exists('name',$commit['committer']) && array_key_exists('username',$commit['committer'])) {
+				if (array_key_exists('name',$commit['committer']) || array_key_exists('username',$commit['committer'])) {
 					$i++;
 				}
 			}
 
+			echo "There where $i commits.";
 			if ($i > 0) {
 				newCommit($repoName,$username,$i,$token);
 			}

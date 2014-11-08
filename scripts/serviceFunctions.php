@@ -1,6 +1,14 @@
- <?php
-	function newCommit ($repoName, $user, $count,$token) {
-	require("connect.php");
+<?php
+/**
+ * Register SPL autoloader.
+ *
+ * @param string $repoName - the name of the ropository committed to
+ * @param string $user - the github username
+ * @param int $count - the number of commits in the push
+ * @param string $token - the user's unique token
+ */
+function newCommit ($repoName, $user, $count, $token) {
+	require_once("connect.php");
 	$stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:username AND repoName=:repoName");
 	$stmt->execute(array(':username' => $user, ':repoName' => $repoName));
 	$row_count = $stmt->rowCount();

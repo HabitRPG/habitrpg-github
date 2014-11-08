@@ -26,25 +26,20 @@ extends HabitRPGAPI
 	 * @param array $newTaskParams required keys: type and text
 	 * @param array $newTaskParams optional keys: value and note
 	 */
-	public function newTask($newTaskParams) {
-		if(is_array($newTaskParams)) {
-			//print_r($newTaskParams);
-			if(!empty($newTaskParams['type'])
-			//&& !empty($newTaskParams['title'])
-			&& !empty($newTaskParams['text'])) {
+	public function newTask ($newTaskParams) {
+		if (is_array($newTaskParams)) {
+			if (!empty($newTaskParams['type']) && !empty($newTaskParams['text'])) {
 				$newTaskParamsEndpoint=$this->apiURL."/tasks";
 				$newTaskPostBody=array();
 				$newTaskPostBody['type'] = $newTaskParams['type'];
 				$newTaskPostBody['text'] = $newTaskParams['text'];
-				if(!empty($newTaskParams['value'])) {
+				if (!empty($newTaskParams['value'])) {
 					$newTaskPostBody['value']=$newTaskParams['value'];
 				}
-				if(!empty($newTaskParams['note'])) {
+				if (!empty($newTaskParams['note'])) {
 					$newTaskPostBody['note']=$newTaskParams['note'];
 				}
-				//print_r($newTaskPostBody);
 				$newTaskPostBody=json_encode($newTaskPostBody);
-
 				return $this->curl($newTaskParamsEndpoint,"POST",$newTaskPostBody);
 			}
 			else {
@@ -59,30 +54,18 @@ extends HabitRPGAPI
 	/**
 	 * Up votes or down votes a task by taskId using apiToken and userId
 	 * @param array $scoringParams required keys: taskId and direction
-	 * @param array $scoringParams optional keys: title, service and icon
 	 */
 	public function taskScoring($scoringParams) {
 		if(is_array($scoringParams)) {
 			if(!empty($scoringParams['taskId']) && !empty($scoringParams['direction'])) {
-				$scoringEndpoint="https://habitrpg.com/v1/users/".$this->userId."/tasks/".$scoringParams['taskId']."/".$scoringParams['direction'];
+				$scoringEndpoint=$this->apiURL."/tasks/".$scoringParams['taskId']."/".$scoringParams['direction'];
 				$scoringPostBody=array();
-				$scoringPostBody['apiToken']=$this->apiToken;
-				if(!empty($scoringParams['title'])) {
-					$scoringPostBody['title']=$scoringParams['title'];
-				}
-				if(!empty($scoringParams['service'])) {
-					$scoringPostBody['service']=$scoringParams['service'];
-				}
-				if(!empty($scoringParams['icon'])) {
-					$scoringPostBody['icon']=$scoringParams['icon'];
-				}
-
 				$scoringPostBody=json_encode($scoringPostBody);
 
 				return $this->curl($scoringEndpoint,"POST",$scoringPostBody);
 			}
 			else {
-				throw new Exception("Required keys of $scoringParams are null.");
+				throw new Exception("Required keys of scoringParams are null.");
 			}
 		}
 		else {

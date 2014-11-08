@@ -65,7 +65,21 @@ extends \PHPUnit_Framework_TestCase
   public function test_taskScoring () {
     $test = new \HabitRPGUser(UserID, APIToken);
 
-    $this->markTestIncomplete('incomplete');
+    // create task
+    $type = 'habit';
+    $text = 'API Task Scoring '.rand();
+    $task = array('type'=>$type,
+                  'text'=>$text
+                  );
+    $result = $test->newTask($task);
+    $taskId = $result['habitRPGData']['_id'];
+
+    // score it
+    $scoringParams = array('taskId'=>$taskId, 'direction'=>'up');
+    $score = $test->taskScoring($scoringParams);
+    //print_r($score);
+
+    $this->assertEquals(1, $score['result']);
   }
 
   /**
@@ -86,10 +100,12 @@ extends \PHPUnit_Framework_TestCase
     $test = new \HabitRPGUser(UserID, APIToken);
 
     $tasks = $test->userStats();
-    //$this->assertEquals(UserID, $tasks['habitRPGData']['_id']);
+    $this->assertEquals(UserID, $tasks['habitRPGData']['_id']);
+    $this->assertTrue(is_array($tasks['habitRPGData']['rewards']));
+    $this->assertTrue(is_array($tasks['habitRPGData']['todos']));
+    $this->assertTrue(is_array($tasks['habitRPGData']['habits']));
+    $this->assertTrue(is_array($tasks['habitRPGData']['dailys']));
     //print_r($tasks);
-
-    $this->markTestIncomplete('incomplete');
   }
 
   /**

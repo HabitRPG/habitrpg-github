@@ -11,9 +11,10 @@ function newCommit ($repoName, $user, $count, $token) {
   echo "In newCommit function\n";
   require_once("connect.php");
   echo "after require\n";
-  $stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:username AND repoName=:repoName");
+  $stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."userInfo WHERE forUser=:forUser AND repoName=:repoName");
+  //$stmt = $db->prepare("SELECT * FROM ".MYSQL_PREFIX."users WHERE username=:username AND token=:token");
   echo "stmt prepped\n";
-  $stmt->execute(array(':username' => $user, ':repoName' => $repoName));
+  $stmt->execute(array(':forUser' => $user, ':repoName' => $repoName));
   echo "stmt executed bitch\n";
   $row_count = $stmt->rowCount();
   echo "Found $row_count rows for $user and repo $repoName to record the $count commits\n";

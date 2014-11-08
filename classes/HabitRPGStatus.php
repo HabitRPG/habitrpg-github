@@ -14,9 +14,8 @@ class HabitRPGStatus
 extends HabitRPGAPI
 {
 	/**
-	 * Creates a new HabitRPGUser instance
+	 * Creates a new HabitRPGStatus instance
 	 */
-
 	public function __construct ($userId, $apiToken) {
 		parent::__construct($userId, $apiToken);
 		$this->apiURL .= 'status';
@@ -24,11 +23,19 @@ extends HabitRPGAPI
 
 	/**
 	 * Grabs HabitRPG's current status
-	 * @function userStats() no parameter's required, uses userId and apiToken
 	 */
 	public function current() {
 		return $this->curl($this->apiURL,"GET",NULL);
 	}
 
+	/**
+	* Grabs HabitRPG's current status
+	*
+	* @return true if up, otherwise false
+	*/
+	public function up() {
+		$test = $this->current;
+		return ('up' == $test['habitRPGData']['status']);
+	}
 }
 ?>

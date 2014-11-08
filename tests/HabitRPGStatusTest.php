@@ -35,7 +35,6 @@ extends \PHPUnit_Framework_TestCase
    * Tests the current function.
    */
   public function test_current () {
-
     // test with real credentials
     $test = new \HabitRPGStatus(UserID, APIToken);
     $current = $test->current();
@@ -47,5 +46,18 @@ extends \PHPUnit_Framework_TestCase
     $current = $test->current();
     //print_r($current);
     $this->assertEquals('up', $current['habitRPGData']['status']);
+  }
+
+  /**
+   * Tests the up function.
+   */
+  public function test_up () {
+    // test with real credentials
+    $test = new \HabitRPGStatus(UserID, APIToken);
+    $this->assertTrue($test->up());
+
+    // test without real credentials
+    $test = new \HabitRPGStatus('', '');
+    $this->assertTrue($test->up());
   }
 }

@@ -33,19 +33,61 @@ extends \PHPUnit_Framework_TestCase
 
   /**
    * Tests the newTask function.
+   *
+   * A task, for example,
+   [83] => Array
+                        (
+                            [text] => :blue_book: Read a 1000 page book
+                            [challenge] => Array
+                                (
+                                    [id] => 39ff426f-9328-4476-86cc-2525a1cf848e
+                                )
+
+                            [attribute] => int
+                            [priority] => 2
+                            [value] => -201.73988025947
+                            [tags] => Array
+                                (
+                                    [39ff426f-9328-4476-86cc-2525a1cf848e] => 1
+                                )
+
+                            [notes] =>
+                            [dateCreated] => 2014-08-26T13:55:09.371Z
+                            [id] => 7b044529-869e-4247-9c58-23da84c2e217
+                            [checklist] => Array
+                                (
+                                )
+
+                            [collapseChecklist] =>
+                            [completed] =>
+                            [type] => todo
+                        )   
    */
   public function test_newTask () {
     $test = new \HabitRPG(UserID, APIToken);
 
     // setup the parameters
-    $type = 'To-Dos';
+    $type = 'todo';
     $title = 'API Task Creation '.rand();
     $text = 'Create a task using the API';
-    $task = array('type'=>$type, 'title'=>$title, 'text'=>$text);
+    $task = array('type'=>$type,
+                  //'title'=>$title,
+                  'text'=>$text
+                  );
+
+    // create it
+    $test->newTask($task);
 
     $this->markTestIncomplete('incomplete');
-    // create it
-    //$test->newTask($task);
+  }
+
+  /**
+   * Tests the taskScoring function.
+   */
+  public function test_taskScoring () {
+    $test = new \HabitRPG(UserID, APIToken);
+
+    $this->markTestIncomplete('incomplete');
   }
 
   /**
@@ -57,5 +99,36 @@ extends \PHPUnit_Framework_TestCase
     $stats = $test->userStats();
     $this->assertEquals(UserID, $stats['habitRPGData']['_id']);
     //print_r($stats);
+  }
+
+  /**
+   * Tests the userTasks function.
+   */
+  public function test_userTasks () {
+    $test = new \HabitRPG(UserID, APIToken);
+
+    $tasks = $test->userStats();
+    //$this->assertEquals(UserID, $tasks['habitRPGData']['_id']);
+    //print_r($tasks);
+
+    $this->markTestIncomplete('incomplete');
+  }
+
+  /**
+   * Tests the userGetTask function.
+   */
+  public function test_userGetTask () {
+    $test = new \HabitRPG(UserID, APIToken);
+
+    $this->markTestIncomplete('incomplete');
+  }
+
+  /**
+   * Tests the updateTask function.
+   */
+  public function test_updateTask () {
+    $test = new \HabitRPG(UserID, APIToken);
+
+    $this->markTestIncomplete('incomplete');
   }
 }

@@ -34,10 +34,13 @@ class HabitRPG {
 	public function newTask($newTaskParams) {
 		if(is_array($newTaskParams)) {
 			print_r($newTaskParams);
-			if(!empty($newTaskParams['type']) && !empty($newTaskParams['title']) && !empty($newTaskParams['text'])) {
+			if(!empty($newTaskParams['type'])
+			//&& !empty($newTaskParams['title'])
+			&& !empty($newTaskParams['text'])) {
 				$newTaskParamsEndpoint=$this->apiURL."/task";
 				$newTaskPostBody=array();
 				$newTaskPostBody['type'] = $newTaskParams['type'];
+				$newTaskPostBody['text'] = $newTaskParams['text'];
 				if(!empty($newTaskParams['value'])) {
 					$newTaskPostBody['value']=$newTaskParams['value'];
 				}
@@ -63,7 +66,6 @@ class HabitRPG {
 	 * @param array $scoringParams required keys: taskId and direction
 	 * @param array $scoringParams optional keys: title, service and icon
 	 */
-
 	public function taskScoring($scoringParams) {
 		if(is_array($scoringParams)) {
 			if(!empty($scoringParams['taskId']) && !empty($scoringParams['direction'])) {
@@ -97,7 +99,6 @@ class HabitRPG {
 	 * Grabs all a user's info using the apiToken and userId
 	 * @function userStats() no parameter's required, uses userId and apiToken
 	 */
-
 	public function userStats() {
 		return $this->curl($this->apiURL,"GET",NULL);
 	}
@@ -107,7 +108,6 @@ class HabitRPG {
 	 * @param string $userTasksType ex. habit,todo,daily (optional null value)
 	 * @param string $userTasksType allows to output only certain type of task
 	 */
-
 	public function userTasks($userTasksType=NULL) {
 		$userTasksEndpoint=$this->apiURL."/tasks";
 		if($userTasksType != NULL) {
@@ -120,7 +120,6 @@ class HabitRPG {
 	 * Get's info for a certain task only for the apiToken and userId passed
 	 * @param string $taskId taskId for user task, which can be grabbed from userTasks()
 	 */
-
 	public function userGetTask($taskId) {
 		if(!empty($taskId)) {
 			$userGetTaskEndpoint=$this->apiURL."/task/".$taskId;
@@ -136,7 +135,6 @@ class HabitRPG {
 	 * Updates a task's for a userId and apiToken combo and a taskId
 	 * @param array $updateParams required keys: taskId and text
 	 */
-
 	public function updateTask($updateParams) {
 		if(is_array($updateParams)) {
 			if(!empty($updateParams['taskId']) && !empty($updateParams['text'])) {

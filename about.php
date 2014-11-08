@@ -1,4 +1,5 @@
 <?php require('scripts/header.php'); ?>
+<?php require('scripts/connect.php'); ?>
   <body>
     <div class="container">
 

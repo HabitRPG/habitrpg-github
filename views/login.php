@@ -1,3 +1,5 @@
+<pre><?php print_r($_SESSION);?></pre>
+
 <div class="page-header">
 	<h1>Login</h1>
 </div>

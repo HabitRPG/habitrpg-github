@@ -12,7 +12,7 @@ If you love playing HabitRPG, and love using GitHub too, why not sync them?  ***
 commits you push to a repository, you will get x number of upvotes* on your HabitRPG account!***  This
 way, your hard work coding pays off with your HabitRPG account.  
 
-*<i>Both of the "x" values are configurable in when you add a repository to your account.</i>
+*<i>Both of these values are configurable in when you add a repository to your account.</i>
 
 ##Local Setup:
 

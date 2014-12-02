@@ -6,8 +6,6 @@
  * file that was distributed with this source code.
  *
  * This class handles loading the classes in this directory.
- *
- * @author Bradley Wogsland <bradley@wogsland.org>
  */
 
 class Autoloader

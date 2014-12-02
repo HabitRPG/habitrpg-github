@@ -6,8 +6,6 @@
  * file that was distributed with this source code.
  *
  * This class represents a HabitRPG status.
- *
- * @author Bradley Wogsland <bradley@wogsland.org>
  */
 
 class HabitRPGStatus

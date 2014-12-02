@@ -6,8 +6,6 @@
  * file that was distributed with this source code.
  *
  * This class represents a HabitRPG user.
- *
- * @author Rudd Fawcett <rudd.fawcett@gmail.com> (from http://github.com/ruddfawcett/HabitRPG_PHP)
  */
 
 class HabitRPGUser
